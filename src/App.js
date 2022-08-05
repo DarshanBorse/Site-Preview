@@ -45,25 +45,26 @@ function App() {
         <title>Site - Preview</title>
       </Helmet>
       {/* Body  */}
-      <div className="bg-gray-100 min-h-screen">
+      <div className="bg-gray-300 min-h-screen">
         <div className="py-10 flex-1 flex justify-center flex-col items-center ">
           <div>
             <h1 className="text-3xl text-center text-gray-900 pb-5">Site Previewer</h1>
+
             <form onSubmit={handleForm}>
-              <div className="flex justify-between items-center gap-3">
+              <div className="lg:flex justify-between items-center gap-3">
                 <input
                   type="text"
                   placeholder="Enter a uri...."
                   onChange={(e) => setUri(e.target.value)}
                   value={uri}
-                  className={`block p-2  w-full  text-gray-900 bg-gray-50 rounded-md border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
+                  className={`block p-2 xs:mt-3 w-full  text-gray-900 bg-gray-50 rounded-md border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
                     error ? "border-red-500" : null
                   }`}
                 />
 
                 <button
                   type="submit"
-                  className="text-white bg-blue-700  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm w-full xs:px-3 sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white bg-blue-700  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm w-full xs:px-3 sm:w-auto  xs:mr-2 px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 xs:mt-3"
                 >
                   Submit
                 </button>
@@ -72,7 +73,7 @@ function App() {
 
             <p className="text-red-600 mt-1">{error ? error : ""}</p>
 
-            <div className="preview">
+            <div>
               {loading ? (
                 <div className="text-center my-3">Loading...</div>
               ) : data ? (
