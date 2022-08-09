@@ -43,6 +43,8 @@ function App() {
       {/* Page title  */}
       <Helmet>
         <title>Site - Preview</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={`Site previewer web application. This can be used to link meta data preview.`} />
       </Helmet>
       {/* Body  */}
       <div className="bg-gray-300 min-h-screen">
@@ -53,7 +55,7 @@ function App() {
             <form onSubmit={handleForm}>
               <div className="lg:flex justify-between items-center gap-3">
                 <input
-                  type="text"
+                  type="url"
                   placeholder="Enter a uri...."
                   onChange={(e) => setUri(e.target.value)}
                   value={uri}
