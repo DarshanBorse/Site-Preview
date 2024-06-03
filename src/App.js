@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getLinkPreview } from "link-preview-js";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
 function App() {
   // Define state
@@ -17,10 +17,15 @@ function App() {
 
     if (uri) {
       try {
-        const metadata = await getLinkPreview(uri);
+        const response = await axios.get("https://api.linkpreview.net", {
+          params: { q: uri },
+          headers: { "X-Linkpreview-Api-Key": "444a6c68e2406ffcb7214e24fda89b5c" },
+        });
 
-        if (metadata.title === "") {
-          setError("This site does not present metadata..");
+        const metadata = response.data;
+
+        if (!metadata.title) {
+          setError("This site does not present metadata.");
         } else {
           setData(metadata);
           setError(false);
@@ -30,11 +35,11 @@ function App() {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        setError("Please, Enter a valid uri..");
+        setError("Please, enter a valid URI.");
       }
     } else {
       setLoading(false);
-      setError("Please, Provide a uri..");
+      setError("Please, provide a URI.");
     }
   };
 
@@ -81,13 +86,15 @@ function App() {
               ) : data ? (
                 <div className="max-w-sm mt-10 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                   <a href="#something">
-                    <img className="rounded-t-lg h-80 w-full" src={data.images[0]} alt="Url icons.." />
+                    <img className="rounded-t-lg h-80 w-full" src={data.image} alt="Url icons.." />
                   </a>
                   <div className="p-5">
                     <a href="#something">
                       <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{data.title}</h5>
                     </a>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{data.description.length > 130 ? data.description.slice(0, 130) + "..." : data.description}</p>
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                      {data.description.length > 130 ? data.description.slice(0, 130) + "..." : data.description}
+                    </p>
                     <div className="flex justify-center mx-auto items-center mt-5">
                       <a
                         href={data.url}
