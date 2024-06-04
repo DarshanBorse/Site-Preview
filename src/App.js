@@ -55,7 +55,9 @@ function App() {
       <div className="bg-gray-300 min-h-screen">
         <div className="py-10 flex-1 flex justify-center flex-col items-center ">
           <div>
-            <h1 className="text-3xl text-center text-gray-900 pb-5">Site Previewer</h1>
+            <h1 className="text-3xl font-[Poppins] hover:underline font-semibold text-center text-gray-900 pb-5">
+              Site Previewer
+            </h1>
 
             <form onSubmit={handleForm}>
               <div className="lg:flex justify-between items-center gap-3">
