@@ -19,7 +19,7 @@ function App() {
       try {
         const response = await axios.get("https://api.linkpreview.net", {
           params: { q: uri },
-          headers: { "X-Linkpreview-Api-Key": "444a6c68e2406ffcb7214e24fda89b5c" },
+          headers: { "X-Linkpreview-Api-Key": process.env.LINK_PREVIEW_KEY },
         });
 
         const metadata = response.data;
